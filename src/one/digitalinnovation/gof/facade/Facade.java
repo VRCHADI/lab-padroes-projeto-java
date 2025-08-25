@@ -1,14 +1,11 @@
 package one.digitalinnovation.gof.facade;
 
 import subsistema1.crm.CrmService;
-import subsistema2.cep.CepApi;
 
 public class Facade {
 
-	public void migrarCliente(String nome, String cep) {
-		String cidade = CepApi.getInstancia().recuperarCidade(cep);
-		String estado = CepApi.getInstancia().recuperarEstado(cep);
-		
-		CrmService.gravarCliente(nome, cep, cidade, estado);
-	}
+    public void registrarCliente(String nome, String cep, String cidade, String estado) {
+        CrmService.Cliente cliente = new CrmService.Cliente(nome, cep, cidade, estado);
+        CrmService.gravarCliente(cliente);
+    }
 }
